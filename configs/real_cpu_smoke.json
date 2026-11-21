@@ -1,0 +1,31 @@
+{
+  "protocol_id": "fineweb-10k-cpu-setup-v1",
+  "model": {
+    "config_id": "real-cpu-smoke-LR",
+    "family": "LR",
+    "cell": "smoke",
+    "layers": 1,
+    "d_model": 16,
+    "heads": 2,
+    "routed_experts": 2,
+    "top_k": 2,
+    "routed_width": 16,
+    "rank": 4,
+    "shared_width": 8,
+    "vocab_size": 50257,
+    "context_length": 512,
+    "seed": 17
+  },
+  "training": {
+    "learning_rate": 0.003,
+    "weight_decay": 0.1,
+    "total_target_tokens": 2048,
+    "warmup_target_tokens": 512,
+    "gradient_accumulation_steps": 1,
+    "max_grad_norm": 1.0,
+    "checkpoint_interval_steps": 1,
+    "recipe_id": "fp32-real-text-smoke-v1"
+  },
+  "warmup_steps": 1,
+  "measurement_steps": 3
+}

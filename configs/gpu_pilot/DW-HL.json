@@ -1,0 +1,32 @@
+{
+  "protocol_id": "fineweb-10k-fp32-gpu-pilot-v1",
+  "model": {
+    "layers": 6,
+    "d_model": 384,
+    "heads": 6,
+    "routed_experts": 8,
+    "top_k": 2,
+    "routed_width": 192,
+    "vocab_size": 50257,
+    "context_length": 512,
+    "seed": 17,
+    "config_id": "DW-HL",
+    "family": "DW",
+    "cell": "HL",
+    "rank": 64,
+    "shared_width": 1280,
+    "config_hash": "b7ee36b56ab75639d9f7883147d835a2f0f90583c400e362447654a715da4c8c"
+  },
+  "training": {
+    "learning_rate": 0.003,
+    "weight_decay": 0.1,
+    "total_target_tokens": 6144,
+    "warmup_target_tokens": 1024,
+    "gradient_accumulation_steps": 1,
+    "max_grad_norm": 1.0,
+    "checkpoint_interval_steps": 4,
+    "recipe_id": "fp32-gpu-instrumented-pilot-v1"
+  },
+  "warmup_steps": 2,
+  "measurement_steps": 10
+}

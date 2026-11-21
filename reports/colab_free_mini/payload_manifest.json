@@ -1,0 +1,149 @@
+{
+  "files": [
+    {
+      "path": "configs/colab_free_mini/LR-HL.json",
+      "sha256": "53014adabdb32268bc8c384e7ddb916eaa127a6bc4862ee1b1a9ddbe91d3fb1a",
+      "bytes": 677
+    },
+    {
+      "path": "configs/colab_free_mini/LR-HS.json",
+      "sha256": "23f16839167182ec2edf2228d2be2ffd74ea03da4ed18f3e40daa2b8e6b22f06",
+      "bytes": 677
+    },
+    {
+      "path": "configs/colab_free_mini/LR-LL.json",
+      "sha256": "c86b81f1ab1ae891afd877470dcbcaeb60e62a10530571f09ec4560e150bc191",
+      "bytes": 677
+    },
+    {
+      "path": "configs/colab_free_mini/LR-LS.json",
+      "sha256": "4d609446d875564cb528c99c603cdf770b7747168a69b72303d62fef8b440e26",
+      "bytes": 677
+    },
+    {
+      "path": "data/prepared/colab_free_mini_v1/audit.json",
+      "sha256": "e3ec34fc81eec83c5b95e0e9a90137c26a4c2ee9ac1415dc50c88d6b4852c043",
+      "bytes": 1375879
+    },
+    {
+      "path": "data/prepared/colab_free_mini_v1/bundle.json",
+      "sha256": "b4fdd74b4c9359524b88d949f62c8ad0af3cb50b8663d4bc8711d49fa93ba19d",
+      "bytes": 6334
+    },
+    {
+      "path": "data/prepared/colab_free_mini_v1/dev.json",
+      "sha256": "12e6668814df378a51945469d59f3782f545e4454cd7716236cff9caffc0a7f0",
+      "bytes": 2513266
+    },
+    {
+      "path": "data/prepared/colab_free_mini_v1/documents.jsonl",
+      "sha256": "575d8f5c1796ab3e3efe24bbc8baa2f8bfd3cff50b11e7b4f874074b6e46ab66",
+      "bytes": 52006505
+    },
+    {
+      "path": "data/prepared/colab_free_mini_v1/near_duplicate_audit.json",
+      "sha256": "5a409f1684a3435dab542b190fb1c60778f2cde1b27af697a4788e770cd176f0",
+      "bytes": 384
+    },
+    {
+      "path": "data/prepared/colab_free_mini_v1/test.json",
+      "sha256": "e1e6d1e01ff5c2d81d38717029ea59ea381b230f8994d5d769756b66e9a92899",
+      "bytes": 155185
+    },
+    {
+      "path": "data/prepared/colab_free_mini_v1/train.json",
+      "sha256": "397186856abeedc94d2b3a37dfd3b433df53db3c91f341c777fcc46aae4cfb10",
+      "bytes": 321538113
+    },
+    {
+      "path": "data/raw/fineweb_10k/dataset_card.md",
+      "sha256": "f3d55e8075b593cc6c0d9c7c81da1c7da3538c9d200a64b3b306fe6f4c31998a",
+      "bytes": 72179
+    },
+    {
+      "path": "data/raw/fineweb_10k/source_metadata.json",
+      "sha256": "8eaf829652ef44a7db08a6e4a8fc216ece57e6b739ae24b91e508806a8d48d43",
+      "bytes": 455
+    },
+    {
+      "path": "data/raw/fineweb_10k/tokenizer/merges.txt",
+      "sha256": "1ce1664773c50f3e0cc8842619a93edc4624525b728b188a9e0be33b7726adc5",
+      "bytes": 456318
+    },
+    {
+      "path": "data/raw/fineweb_10k/tokenizer/tokenizer.json",
+      "sha256": "8414cab924d8b9b33013f0d221c5862f365ee9be39c5c2bfae8a5a9e970478a6",
+      "bytes": 1355256
+    },
+    {
+      "path": "data/raw/fineweb_10k/tokenizer/tokenizer_config.json",
+      "sha256": "5e04eb606e3a1583530a42e36c2a6b6615c86f34fe77e44d9ddeb43ff940931f",
+      "bytes": 26
+    },
+    {
+      "path": "data/raw/fineweb_10k/tokenizer/vocab.json",
+      "sha256": "196139668be63f3b5d6574427317ae82f612a97c5d1cdaf36ed2256dbf636783",
+      "bytes": 1042301
+    },
+    {
+      "path": "scripts/run_colab_mini.py",
+      "sha256": "55fa4455048492ee3e0abdfb80e0e99a776781d32a94c0f61d423a55c9ef9ef6",
+      "bytes": 17346
+    },
+    {
+      "path": "src/analyze.py",
+      "sha256": "101de93a4f5cf857f621a9ea32d24b5bef1e088df36e640bec30576598a9dbaa",
+      "bytes": 17399
+    },
+    {
+      "path": "src/budget.py",
+      "sha256": "924f6ddff21634836ccb3f23a498c7867a838f736f93d188cb1cefaefa000f38",
+      "bytes": 10379
+    },
+    {
+      "path": "src/cost.py",
+      "sha256": "82d144050f70f5c5ce627802f404f50e3a88ec50c2f46dbfcbdb1ebc141f727d",
+      "bytes": 8009
+    },
+    {
+      "path": "src/data.py",
+      "sha256": "56f61ac62fa9488d4fdc5db20991855695e7cbd21fd8d70deea694f8da7508ad",
+      "bytes": 23611
+    },
+    {
+      "path": "src/evaluate.py",
+      "sha256": "0e44449e8b0c8ad092ace38f20cf3428f0fb7375721bb7a9588a46a7a6ba5f71",
+      "bytes": 1750
+    },
+    {
+      "path": "src/model.py",
+      "sha256": "38c31d6af4eaa0411c73a53dcb49e42ad202400b380ccaa9dbccc5e45e9f2944",
+      "bytes": 15968
+    },
+    {
+      "path": "src/preflight.py",
+      "sha256": "de1c763f2f509d6cf54be179a930ea74144f99353f0eec8fe3fbf613b64c611c",
+      "bytes": 5899
+    },
+    {
+      "path": "src/real_preflight.py",
+      "sha256": "fc817fd7e942fb406ab17607af3b5cd98f2de22f52e547fa6a0e4a7cec066886",
+      "bytes": 6572
+    },
+    {
+      "path": "src/train.py",
+      "sha256": "63d2d70a8d0d4917b717d5adda51ed2969b4097730f7c244e7e8304bb16bccb5",
+      "bytes": 35934
+    }
+  ],
+  "remote_downloads": [
+    {
+      "path": "data/raw/fineweb_10k/000_00000.parquet",
+      "url": "https://huggingface.co/datasets/HuggingFaceFW/fineweb-edu/resolve/84e8104e779e409e2267ac60609138e3dda2cbd2/sample/10BT/000_00000.parquet",
+      "sha256": "b1ba7b2ce4cb5ea6ef42dca40263eabb85f37700d01693a68e9b30a31d78e871"
+    }
+  ],
+  "payload_sha256": "da2302c12e7da338793dcb9a0a35a66d6946e221af6f01049acfd8b561b839b4",
+  "payload_bytes": 47300563,
+  "bundle_sha256": "b4fdd74b4c9359524b88d949f62c8ad0af3cb50b8663d4bc8711d49fa93ba19d"
+}

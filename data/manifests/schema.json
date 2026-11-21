@@ -1,0 +1,251 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:low-rank-moe:data-manifest.schema.v1",
+  "title": "Low-Rank-MoE data and tokenizer manifest",
+  "description": "Records source declarations separately from locally verified artifacts and actual audits.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "manifest_id",
+    "status",
+    "dataset",
+    "tokenizer",
+    "split_policy",
+    "packing_policy",
+    "actual_audit"
+  ],
+  "properties": {
+    "schema_version": {"const": 1},
+    "manifest_id": {"type": "string", "minLength": 1},
+    "status": {"enum": ["planned", "source_metadata_checked", "locally_audited", "ready"]},
+    "dataset": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["repository", "config", "revision", "license", "shards"],
+      "properties": {
+        "repository": {"type": "string", "minLength": 1},
+        "config": {"type": ["string", "null"]},
+        "revision": {"$ref": "#/$defs/revision"},
+        "license": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["source_label", "license_url", "terms_url", "local_review_status"],
+          "properties": {
+            "source_label": {"type": ["string", "null"]},
+            "license_url": {"type": ["string", "null"], "format": "uri"},
+            "terms_url": {"type": ["string", "null"], "format": "uri"},
+            "local_review_status": {"enum": ["not_reviewed", "reviewed", "unclear"]},
+            "review_notes": {"type": ["string", "null"]}
+          }
+        },
+        "source_splits": {"type": "array", "items": {"type": "string"}},
+        "shards": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["path", "source_declared_sha256", "locally_verified_sha256", "verification_status"],
+            "properties": {
+              "path": {"type": "string", "minLength": 1},
+              "source_declared_sha256": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"},
+              "source_checksum_location": {"type": ["string", "null"]},
+              "locally_verified_sha256": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"},
+              "locally_verified_at": {"type": ["string", "null"], "format": "date-time"},
+              "verification_status": {"enum": ["not_downloaded", "not_checked", "match", "mismatch"]}
+            }
+          }
+        },
+        "declared_shard_count": {"type": ["integer", "null"], "minimum": 0},
+        "declared_total_bytes": {"type": ["integer", "null"], "minimum": 0}
+      }
+    },
+    "tokenizer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["repository", "revision", "artifact_checksums", "special_token_behavior"],
+      "properties": {
+        "repository": {"type": "string", "minLength": 1},
+        "revision": {"$ref": "#/$defs/revision"},
+        "artifact_checksums": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["path", "source_declared_sha256", "locally_verified_sha256"],
+            "properties": {
+              "path": {"type": "string"},
+              "source_declared_sha256": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"},
+              "locally_verified_sha256": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"}
+            }
+          }
+        },
+        "special_token_behavior": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["eos_token", "bos_token", "pad_token", "locally_tested"],
+          "properties": {
+            "eos_token": {"type": ["string", "null"]},
+            "bos_token": {"type": ["string", "null"]},
+            "pad_token": {"type": ["string", "null"]},
+            "locally_tested": {"type": "boolean"},
+            "notes": {"type": ["string", "null"]}
+          }
+        }
+      }
+    },
+    "split_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["method", "seed", "fractions", "identity_links", "split_isolation_checked"],
+      "properties": {
+        "method": {"const": "sha256_group_bucket"},
+        "seed": {"type": "integer", "minimum": 0},
+        "fractions": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["train", "dev", "test"],
+          "properties": {
+            "train": {"const": 0.98},
+            "dev": {"const": 0.01},
+            "test": {"const": 0.01}
+          }
+        },
+        "identity_links": {"type": "array", "items": {"enum": ["document_id", "canonical_url", "normalized_text_sha256"]}},
+        "split_isolation_checked": {"type": "boolean"},
+        "near_duplicate_audit": {"enum": ["not_performed", "sampled", "completed"]}
+      }
+    },
+    "packing_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["context_length", "eos_between_documents", "cross_split_packing", "labels_pre_shifted", "padding_label_id"],
+      "properties": {
+        "context_length": {"type": "integer", "minimum": 1},
+        "eos_between_documents": {"const": true},
+        "cross_split_packing": {"const": false},
+        "labels_pre_shifted": {"const": true},
+        "padding_label_id": {"const": -100},
+        "document_context_after_eos": {"const": true}
+      }
+    },
+    "actual_audit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "performed_at", "documents_seen", "missing_text_excluded", "null_text_excluded", "non_string_text_excluded", "empty_text_excluded", "duplicate_id_records", "exact_duplicates_removed", "exact_cross_split_overlaps", "near_duplicate_review"],
+      "properties": {
+        "status": {"enum": ["not_performed", "in_progress", "completed"]},
+        "performed_at": {"type": ["string", "null"], "format": "date-time"},
+        "documents_seen": {"type": ["integer", "null"], "minimum": 0},
+        "missing_text_excluded": {"type": ["integer", "null"], "minimum": 0},
+        "null_text_excluded": {"type": ["integer", "null"], "minimum": 0},
+        "non_string_text_excluded": {"type": ["integer", "null"], "minimum": 0},
+        "empty_text_excluded": {"type": ["integer", "null"], "minimum": 0},
+        "duplicate_id_records": {"type": ["integer", "null"], "minimum": 0},
+        "exact_duplicates_removed": {"type": ["integer", "null"], "minimum": 0},
+        "exact_cross_split_overlaps": {"type": ["integer", "null"], "minimum": 0},
+        "near_duplicate_review": {"enum": ["not_performed", "pending", "sampled", "completed"]},
+        "notes": {"type": ["string", "null"]}
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"status": {"const": "ready"}}, "required": ["status"]},
+      "then": {
+        "properties": {
+          "dataset": {
+            "required": ["revision", "license", "shards"],
+            "properties": {
+              "revision": {
+                "required": ["value", "provenance", "locally_verified_at"],
+                "properties": {
+                  "value": {"type": "string", "pattern": "^([0-9a-f]{40}|[0-9a-f]{64})$"},
+                  "provenance": {"const": "locally_verified"},
+                  "locally_verified_at": {"type": "string", "format": "date-time"}
+                }
+              },
+              "license": {
+                "required": ["source_label", "license_url", "terms_url", "local_review_status"],
+                "properties": {
+                  "source_label": {"type": "string", "minLength": 1},
+                  "license_url": {"type": "string", "format": "uri"},
+                  "terms_url": {"type": "string", "format": "uri"},
+                  "local_review_status": {"const": "reviewed"}
+                }
+              },
+              "shards": {
+                "minItems": 1,
+                "items": {
+                  "required": ["locally_verified_sha256", "locally_verified_at", "verification_status"],
+                  "properties": {
+                    "locally_verified_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+                    "locally_verified_at": {"type": "string", "format": "date-time"},
+                    "verification_status": {"const": "match"}
+                  }
+                }
+              }
+            }
+          },
+          "tokenizer": {
+            "required": ["revision", "artifact_checksums", "special_token_behavior"],
+            "properties": {
+              "revision": {
+                "required": ["value", "provenance", "locally_verified_at"],
+                "properties": {
+                  "value": {"type": "string", "pattern": "^([0-9a-f]{40}|[0-9a-f]{64})$"},
+                  "provenance": {"const": "locally_verified"},
+                  "locally_verified_at": {"type": "string", "format": "date-time"}
+                }
+              },
+              "artifact_checksums": {
+                "minItems": 1,
+                "items": {
+                  "required": ["locally_verified_sha256"],
+                  "properties": {"locally_verified_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}}
+                }
+              },
+              "special_token_behavior": {
+                "required": ["locally_tested"],
+                "properties": {"locally_tested": {"const": true}}
+              }
+            }
+          },
+          "split_policy": {
+            "required": ["split_isolation_checked"],
+            "properties": {"split_isolation_checked": {"const": true}}
+          },
+          "actual_audit": {
+            "required": ["status", "performed_at", "documents_seen", "missing_text_excluded", "null_text_excluded", "non_string_text_excluded", "empty_text_excluded", "duplicate_id_records", "exact_duplicates_removed", "exact_cross_split_overlaps", "near_duplicate_review"],
+            "properties": {
+              "status": {"const": "completed"},
+              "performed_at": {"type": "string", "format": "date-time"},
+              "documents_seen": {"type": "integer", "minimum": 0},
+              "missing_text_excluded": {"type": "integer", "minimum": 0},
+              "null_text_excluded": {"type": "integer", "minimum": 0},
+              "non_string_text_excluded": {"type": "integer", "minimum": 0},
+              "empty_text_excluded": {"type": "integer", "minimum": 0},
+              "duplicate_id_records": {"type": "integer", "minimum": 0},
+              "exact_duplicates_removed": {"type": "integer", "minimum": 0},
+              "exact_cross_split_overlaps": {"const": 0},
+              "near_duplicate_review": {"enum": ["sampled", "completed"]}
+            }
+          }
+        },
+        "required": ["dataset", "tokenizer", "split_policy", "actual_audit"]
+      }
+    }
+  ],
+  "$defs": {
+    "revision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value", "provenance", "locally_verified_at"],
+      "properties": {
+        "value": {"type": ["string", "null"]},
+        "provenance": {"enum": ["source_provided", "locally_verified", "unverified", "not_set"]},
+        "locally_verified_at": {"type": ["string", "null"], "format": "date-time"}
+      }
+    }
+  }
+}

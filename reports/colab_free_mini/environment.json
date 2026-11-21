@@ -1,0 +1,24 @@
+{
+  "session_name": "low-rank-moe-mini-20260927",
+  "cli_version": "0.7.4",
+  "account_before": {
+    "paid_cu_balance": 0,
+    "usage_rate_cu_hour": 0,
+    "assignments": 0
+  },
+  "account_after_allocation": {
+    "paid_cu_balance": 0,
+    "displayed_usage_rate_cu_hour": 1.07,
+    "assignments": 1
+  },
+  "hardware": {
+    "gpu": "Tesla T4",
+    "vram_bytes": 15637086208,
+    "torch": "2.11.0+cu128",
+    "cuda": "12.8",
+    "python": "3.13.15"
+  },
+  "connection_fix": "SSL_CERT_FILE points to certifi CA; TLS verification enabled",
+  "payment_or_cu_purchase": false,
+  "gpu_training_started": false
+}

@@ -1,0 +1,12 @@
+# M3 model conventions
+
+These deterministic choices refine `plans/interfaces.md` and `experiment_plan.md` for the toy and pilot model. They are implementation conventions, not findings from training.
+
+- RMSNorm uses epsilon `1e-5`, a learned scale only, and no bias. Each block applies pre-RMSNorm to attention, adds the attention residual, applies its second pre-RMSNorm to the FFN/MoE input, then adds the FFN residual. The router and all experts receive that same second normalized tensor.
+- RoPE uses base `10000`, even/odd adjacent coordinate pairs, and zero-based absolute positions. It rotates queries and keys after head reshape; neither values nor output projections are rotated. No RoPE parameters are learned. A later cached decoder must pass the absolute position offset explicitly; the preparation model need only handle a full sequence from position zero.
+- A factorized `nn.Linear` with input width `d_in`, output width `d_out`, and rank `r` stores `A` as `[r,d_in]` and `B` as `[d_out,r]`. It computes `linear(linear(x,A),B)` with no activation between factors; explicit reference weight is `B @ A`. Each of gate/up/down projections has its own pair.
+- The router computes logits and softmax in FP32. `f_i = count_i/(K*T_valid)` is detached hard assignment, and `p_i` is the pre-top-K softmax mean over valid tokens. A layer's auxiliary term is `N * sum_i(f_i*p_i)`. Model `router_aux_loss` is the arithmetic mean of the six routed-layer terms; `SHARED_ONLY` returns scalar zero. Training adds `0.01 * router_aux_loss` once.
+- `routing_stats` has `layers`, a list of per-layer records containing `valid_token_count`, `selected_count` (`N` integers), and `mean_probability` (`N` floats). It may contain extra diagnostic fields. Each layer excludes padded tokens. `SHARED_ONLY` returns `layers=[]`, `valid_token_count` reflecting the batch mask, and empty expert statistics.
+- Selected top-2 weights are normalized to sum to one per valid token. Dropless dispatch performs exactly `K*T_valid` selected expert evaluations, allowing all tokens to choose the same experts. The shared FFN output is added once, without gate scaling.
+
+Tests should independently compare float64 factor forward and input/A/B gradients against explicit `B @ A` weights; compare sparse dispatch with a dense all-expert masked reference and its gradients; test padding exclusion, uniform-router auxiliary value 1, seed reproducibility, causal attention, tying, and all 11 actual parameter counts. The 37M configurations are counted, not trained by these tests.

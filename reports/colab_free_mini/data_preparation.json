@@ -1,0 +1,15 @@
+{
+  "bundle_hash": "b4fdd74b4c9359524b88d949f62c8ad0af3cb50b8663d4bc8711d49fa93ba19d",
+  "bundle_path": "data/prepared/colab_free_mini_v1/bundle.json",
+  "purpose": "mini_exploration_only",
+  "sampling_representative_of_full_corpus": false,
+  "source_bundle_sha256": "0c8a9e89088d64a86ae8315ea01955cb4c58985faaa663841cc4e8e25354da34",
+  "source_documents_count": 9999,
+  "source_documents_sha256": "575d8f5c1796ab3e3efe24bbc8baa2f8bfd3cff50b11e7b4f874074b6e46ab66",
+  "target_counts": {
+    "dev": 65536,
+    "test_retained_not_evaluated": 4096,
+    "train": 8388608
+  },
+  "test_evaluated": false
+}

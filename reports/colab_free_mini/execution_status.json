@@ -1,0 +1,33 @@
+{
+  "status": "free_colab_mini_experiment_completed",
+  "protocol_id": "colab-free-mini-v2",
+  "purpose": "mini_exploration_only",
+  "gpu_training_started": true,
+  "gpu_training_completed": true,
+  "paid_purchase_performed": false,
+  "payload_file_count": 27,
+  "payload_bytes": 47300563,
+  "payload_sha256": "da2302c12e7da338793dcb9a0a35a66d6946e221af6f01049acfd8b561b839b4",
+  "source_bundle_sha256": "b4fdd74b4c9359524b88d949f62c8ad0af3cb50b8663d4bc8711d49fa93ba19d",
+  "destination": "Google Colab session low-rank-moe-mini-v2-20260927 /content",
+  "hardware": "Tesla T4",
+  "torch_version": "2.11.0+cu128",
+  "final_target_tokens_per_cell": 3145728,
+  "optimizer_steps_per_cell": 768,
+  "final_config_directory": "configs/colab_free_mini_final",
+  "all_four_pilots_usable": true,
+  "all_four_final_runs_completed": true,
+  "all_four_final_checkpoint_sha256_verified": true,
+  "recovery_check": "passed: LR-HL checkpoint step 736 restored and advanced to step 737",
+  "tests_before_gpu_run": "102 passed, 1 skipped",
+  "gpu_session_state": "terminated; server sessions reports no active sessions; status says session not found",
+  "usage_after_stop": {
+    "paid_cu_balance": 0,
+    "displayed_rate_per_hour": 0.0,
+    "displayed_assignments": 0,
+    "note": "immediate post-stop usage lagged at 1.07/hr and 1 assignment; final check reconciled to zero"
+  },
+  "payload_transfer_approved": true,
+  "experiment_start_authorized": true,
+  "summary": "reports/colab_free_mini/experiment_summary.md"
+}

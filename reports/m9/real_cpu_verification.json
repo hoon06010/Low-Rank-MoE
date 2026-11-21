@@ -1,0 +1,29 @@
+{
+  "all_passed": true,
+  "checks": {
+    "both_completed": true,
+    "cursor": true,
+    "data_order": true,
+    "dev_loss_exact_equal": true,
+    "epoch": true,
+    "expected_training_targets": true,
+    "model_state_dict": true,
+    "optimizer_state_dict": true,
+    "optimizer_step": true,
+    "rng_state": true,
+    "scheduler_state_dict": true,
+    "trained_target_tokens": true
+  },
+  "config_sha256": "df7e81dc4f18bc6e9cfa122828517eb8ccaa0d1f9222ac0d1cdf66dfcbd3455d",
+  "continuous_run_id": "becc3559-85e6-4ddf-8dc6-417de895df66",
+  "data_manifest_hash": "0c8a9e89088d64a86ae8315ea01955cb4c58985faaa663841cc4e8e25354da34",
+  "device": "cpu",
+  "eval_targets_per_run": 4096,
+  "gpu_status": "not_run_no_cuda",
+  "note": "Tiny randomly initialized model; no research contrast or performance claim.",
+  "purpose": "pipeline_smoke_only",
+  "resumed_run_id": "df24bae5-81c2-45e8-8f6d-a913fd8066b2",
+  "source_kind": "measured",
+  "torch_threads": 2,
+  "trained_targets_per_run": 2048
+}

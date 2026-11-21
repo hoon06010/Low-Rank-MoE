@@ -1,0 +1,44 @@
+{
+  "approved": false,
+  "approval_reference": null,
+  "experiment_id": "stage-c-init-seed-repeat-v1",
+  "seeds": [
+    401
+  ],
+  "phases": [],
+  "provider": null,
+  "device_name": null,
+  "precision": "float32",
+  "torch_version": null,
+  "cuda_version": null,
+  "python_version": null,
+  "quota_checked_at": null,
+  "quota_seconds": null,
+  "total_limit_seconds": null,
+  "session_limit_seconds": null,
+  "session_id": null,
+  "session_started_at": null,
+  "invocation_seconds": null,
+  "reserve_seconds": null,
+  "min_free_bytes": null,
+  "max_output_bytes": null,
+  "cost_per_hour": null,
+  "cost_limit": null,
+  "cost_currency": null,
+  "prior_charged_seconds": null,
+  "persistent_root": null,
+  "persistent_storage_evidence": null,
+  "source_revision": "1d67b6451e97f946a065550e2f9a51a8240eb116dbacef9208656cf68132a646",
+  "four_cell_pilot_evidence": {
+    "path": null,
+    "sha256": null
+  },
+  "step0_recovery_evidence": {
+    "path": null,
+    "sha256": null
+  },
+  "bounded_recovery_evidence": {
+    "path": null,
+    "sha256": null
+  }
+}

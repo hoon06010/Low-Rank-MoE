@@ -1,0 +1,42 @@
+{
+  "protocol_id": "colab-free-mini-stability-v1",
+  "model": {
+    "config_id": "LR-LL",
+    "family": "LR",
+    "cell": "LL",
+    "layers": 6,
+    "d_model": 384,
+    "heads": 6,
+    "routed_experts": 8,
+    "top_k": 2,
+    "routed_width": 768,
+    "rank": 32,
+    "shared_width": 256,
+    "shared_experts": 5,
+    "vocab_size": 50257,
+    "context_length": 512,
+    "seed": 17
+  },
+  "training": {
+    "learning_rate": 0.0003,
+    "weight_decay": 0.1,
+    "betas": [
+      0.9,
+      0.95
+    ],
+    "eps": 1e-08,
+    "total_target_tokens": 3145728,
+    "warmup_target_tokens": 157286,
+    "min_lr_ratio": 0.1,
+    "gradient_accumulation_steps": 8,
+    "max_grad_norm": 1.0,
+    "router_aux_coefficient": 0.01,
+    "checkpoint_interval_steps": 32,
+    "recipe_id": "colab-mini-adamw-global-zero-grad-v1",
+    "optimizer": "adamw",
+    "router_balance_scope": "optimizer_step",
+    "idle_expert_policy": "zero_grad"
+  },
+  "global_target_batch": 4096,
+  "eval_interval_tokens": 1048576
+}

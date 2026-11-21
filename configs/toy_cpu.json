@@ -1,0 +1,59 @@
+{
+  "kind": "toy_cpu",
+  "protocol_id": "toy-cpu-preflight-v1",
+  "source_revision": "unavailable",
+  "tokenizer_revision": "synthetic-fixture-token-map-v1",
+  "eval_revision": "synthetic-fixture-dev-v1",
+  "device": "cpu",
+  "model": {
+    "config_id": "toy-cpu-lr",
+    "family": "LR",
+    "cell": "toy",
+    "layers": 1,
+    "d_model": 8,
+    "heads": 2,
+    "routed_experts": 2,
+    "top_k": 2,
+    "routed_width": 6,
+    "rank": 2,
+    "shared_width": 4,
+    "vocab_size": 32,
+    "context_length": 4,
+    "seed": 7
+  },
+  "training": {
+    "learning_rate": 0.003,
+    "weight_decay": 0.1,
+    "betas": [0.9, 0.95],
+    "eps": 1e-8,
+    "total_target_tokens": 8,
+    "warmup_target_tokens": 4,
+    "min_lr_ratio": 0.1,
+    "gradient_accumulation_steps": 2,
+    "max_grad_norm": 1.0,
+    "router_aux_coefficient": 0.01,
+    "checkpoint_interval_steps": 1,
+    "recipe_id": "toy-adamw-token-cosine-v1"
+  },
+  "data": {
+    "seed": 7,
+    "eos_token_id": 2,
+    "pad_token_id": 0,
+    "documents": [
+      {
+        "id": "toy-train-1",
+        "text": "3 4 5 6 7 8 9 10 11 12 13",
+        "split": "train",
+        "group_hash": "toy-train-group",
+        "text_sha256": "synthetic-train-text-hash"
+      },
+      {
+        "id": "toy-dev-1",
+        "text": "4 5 6 7 8",
+        "split": "dev",
+        "group_hash": "toy-dev-group",
+        "text_sha256": "synthetic-dev-text-hash"
+      }
+    ]
+  }
+}

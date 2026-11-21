@@ -1,0 +1,10 @@
+{
+  "status": "passed",
+  "source_checkpoint": "checkpoint-fb2e235e8d2a4185b41a4a1fa23a7020.pt",
+  "source_sha256": "942d648f1371853bfaf418bf46f51b932009212823f0a6a41a84d7d5357a914e",
+  "restored_step": 736,
+  "advanced_step": 737,
+  "restored_tokens": 3014656,
+  "advanced_tokens": 3018752,
+  "purpose": "recovery_check_only"
+}
